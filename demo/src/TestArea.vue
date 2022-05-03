@@ -1,37 +1,58 @@
 <template>
   <div class="demo-test-area--wrapper" :style="{color: textColor}">
     <div class="demo-test-area--title">
-      <div class="demo-test-area--title-main" :style="{color: linkColor}">vue-beautiful-chat demo</div>
-      <div class="demo-test-area--title-sub">by <a :style="{color: linkColor}" href="https://matteo.merola.co">mattmezza</a></div>
+      <div class="demo-test-area--title-main" :style="{color: linkColor}">
+        vue-beautiful-chat demo
+      </div>
+      <div class="demo-test-area--title-sub">
+        by <a :style="{color: linkColor}" href="https://matteo.merola.co">mattmezza</a>
+      </div>
     </div>
-    <form class="demo-test-area" @submit.prevent="_handleSubmit" @keyup="_handleTyping">
+    <form class="demo-test-area" @submit.prevent="_handleSubmit">
       <div class="demo-test-area--preamble">
         <p>Test the chat window by sending a message:</p>
         <p v-if="userIsTyping">User is typing...</p>
       </div>
-      <textarea ref="textArea" class="demo-test-area--text" placeholder="Write a test message...." :style="textareaStyle" />
-      <button class="demo-test-area--button" :style="{background: ctaColor, color: colors.sentMessage.text}"> Send Message! </button>
+      <textarea
+        ref="textArea"
+        class="demo-test-area--text"
+        placeholder="Write a test message...."
+        :style="textareaStyle"
+      />
+      <button
+        class="demo-test-area--button"
+        :style="{background: ctaColor, color: colors.sentMessage.text}"
+      >
+        Send Message!
+      </button>
     </form>
     <p class="demo-test-area--info">
-      <a :style="{color: linkColor}" href="https://github.com/mattmezza/vue-beautiful-chat">vue-beautiful-chat</a> is a chat window that allows you to build and add custom live chat to your sites. It includes only the vue chat widget. There is no backend, and no communication system baked in.
+      <a :style="{color: linkColor}" href="https://github.com/mattmezza/vue-beautiful-chat"
+        >vue-beautiful-chat</a
+      >
+      is a chat window that allows you to build and add custom live chat to your sites. It includes
+      only the vue chat widget. There is no backend, and no communication system baked in.
       <br />
-      It is based on <a :style="{color: linkColor}" href="https://github.com/kingofthestack/react-live-chat">react-chat-window</a> and adds some features to it, like optional emoji and file messages.
+      It is based on
+      <a :style="{color: linkColor}" href="https://github.com/kingofthestack/react-live-chat"
+        >react-chat-window</a
+      >
+      and adds some features to it, like optional emoji and file messages.
       <br />
       <br />
-      For instructions on how to use it click <a :style="{color: linkColor}" href="https://github.com/mattmezza/vue-beautiful-chat">here</a>.
+      For instructions on how to use it click
+      <a :style="{color: linkColor}" href="https://github.com/mattmezza/vue-beautiful-chat">here</a
+      >.
       <br />
       <br />
     </p>
   </div>
 </template>
+
 <script>
 export default {
   props: {
     onMessage: {
-      type: Function,
-      required: true
-    },
-    onTyping: {
       type: Function,
       required: true
     },
@@ -42,25 +63,11 @@ export default {
     chosenColor: {
       type: String,
       required: true
-    },
-    messageStyling: {
-      type: Boolean,
-      required: true
     }
   },
   data() {
     return {
       userIsTyping: false
-    }
-  },
-  methods: {
-    _handleSubmit() {
-      this.onMessage(this.$refs.textArea.value)
-      this.$refs.textArea.value = ''
-      this.onTyping('')
-    },
-    _handleTyping() {
-      this.onTyping(this.$refs.textArea.value)
     }
   },
   computed: {
@@ -88,11 +95,18 @@ export default {
       this.userIsTyping = true
       setTimeout(() => {
         this.userIsTyping = false
-      }, 3000);
+      }, 3000)
     })
+  },
+  methods: {
+    _handleSubmit() {
+      this.onMessage(this.$refs.textArea.value)
+      this.$refs.textArea.value = ''
+    }
   }
 }
 </script>
+
 <style scoped>
 .demo-test-area--wrapper {
   width: 100%;

@@ -45,10 +45,7 @@ export default {
 
 .sc-message--file-icon {
   text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 15px;
-  margin-bottom: 0px;
+  margin: 15px auto 0px;
 }
 
 .sc-image {

@@ -1,10 +1,10 @@
 {
-  "name": "vue-beautiful-chat",
+  "name": "@chudaozhe/vue-beautiful-chat",
   "version": "2.5.0",
   "description": "A simple and beautiful Vue chat component backend agnostic.",
   "main": "./dist/vue-beautiful-chat.umd.min.js",
-  "repository": "https://github.com/mattmezza/vue-beautiful-chat.git",
-  "author": "Matteo Merola <mattmezza@gmail.com>",
+  "repository": "https://github.com/chudaozhe/vue-beautiful-chat.git",
+  "author": "chudaozhe <chudaozhe@outlook.com>",
   "license": "MIT",
   "scripts": {
     "build": "vue-cli-service build --target lib --name vue-beautiful-chat --formats umd-min src/index.js",
@@ -21,9 +21,7 @@
     "escape-goat": "^1.3.0",
     "imagemin": "^6.1.0",
     "kind-of": "6.0.3",
-    "minimist": "1.2.3",
-    "msgdown": "^1.0.2",
-    "v-tooltip": "^2.0.1"
+    "minimist": "1.2.3"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.2.3",
@@ -53,7 +51,7 @@
     "vue-js-chat"
   ],
   "bugs": {
-    "url": "https://github.com/mattmezza/vue-beautiful-chat/issues"
+    "url": "https://github.com/chudaozhe/vue-beautiful-chat/issues"
   },
   "husky": {
     "hooks": {

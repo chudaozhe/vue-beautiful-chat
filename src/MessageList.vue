@@ -9,10 +9,8 @@
       v-for="(message, idx) in messages"
       :key="idx"
       :message="message"
-      :user="profile(message.author)"
+      :user="profile(message.user_id)"
       :colors="colors"
-      :message-styling="messageStyling"
-      @remove="$emit('remove', message)"
     >
       <template v-slot:user-avatar="scopedProps">
         <slot name="user-avatar" :user="scopedProps.user" :message="scopedProps.message"> </slot>
@@ -30,18 +28,7 @@
       <template v-slot:system-message-body="scopedProps">
         <slot name="system-message-body" :message="scopedProps.message"> </slot>
       </template>
-      <template v-slot:text-message-toolbox="scopedProps">
-        <slot name="text-message-toolbox" :message="scopedProps.message" :me="scopedProps.me">
-        </slot>
-      </template>
     </Message>
-    <Message
-      v-show="showTypingIndicator !== ''"
-      :message="{author: showTypingIndicator, type: 'typing'}"
-      :user="profile(showTypingIndicator)"
-      :colors="colors"
-      :message-styling="messageStyling"
-    />
   </div>
 </template>
 
@@ -62,19 +49,11 @@ export default {
       type: Array,
       required: true
     },
-    showTypingIndicator: {
-      type: String,
-      required: true
-    },
     colors: {
       type: Object,
       required: true
     },
     alwaysScrollToBottom: {
-      type: Boolean,
-      required: true
-    },
-    messageStyling: {
       type: Boolean,
       required: true
     }
@@ -104,9 +83,8 @@ export default {
       const scrollable = scrollTop > this.$refs.scrollList.scrollHeight - 600
       return this.alwaysScrollToBottom || scrollable
     },
-    profile(author) {
-      const profile = this.participants.find((profile) => profile.id === author)
-
+    profile(user_id) {
+      const profile = this.participants.find((profile) => profile.id === user_id)
       // A profile may not be found for system messages or messages by 'me'
       return profile || {imageUrl: '', name: ''}
     }

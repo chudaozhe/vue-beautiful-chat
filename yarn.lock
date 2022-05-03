@@ -5937,11 +5937,6 @@ ms@2.1.2, ms@^2.1.1:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
 
-msgdown@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/msgdown/-/msgdown-1.0.2.tgz#0ef8328a2851609672047cf6ba737d73860155b9"
-  integrity sha512-KY0nYCeFfG34umrpWPPRLQTh0apC6RdsnAaKZIG9A38HZ3RfVxamgvYwuxA1Z1o/wk6ycR/JmZI5ZKFpMO7AFA==
-
 multicast-dns-service-types@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/multicast-dns-service-types/-/multicast-dns-service-types-1.1.0.tgz#899f11d9686e5e05cb91b35d5f0e63b773cfc901"
@@ -6787,11 +6782,6 @@ pnp-webpack-plugin@^1.6.0:
   integrity sha512-7Wjy+9E3WwLOEL30D+m8TSTF7qJJUJLONBnwQp0518siuMxUQUbgZwssaFX+QKlZkjHZcw/IpZCt/H0srrntSg==
   dependencies:
     ts-pnp "^1.1.6"
-
-popper.js@^1.16.0:
-  version "1.16.1"
-  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.16.1.tgz#2a223cb3dc7b6213d740e40372be40de43e65b1b"
-  integrity sha512-Wb4p1J4zyFTbM+u6WuO4XstYx4Ky9Cewe4DWrel7B0w6VVICvPwdOpotjzcf6eD8TsckVnIMNONQyPIUFOUbCQ==
 
 portfinder@^1.0.25, portfinder@^1.0.26:
   version "1.0.26"
@@ -8962,15 +8952,6 @@ uuid@^3.3.2, uuid@^3.4.0:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
   integrity sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==
 
-v-tooltip@^2.0.1:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/v-tooltip/-/v-tooltip-2.0.3.tgz#34fd64096656f032b1616567bf62f6165c57d529"
-  integrity sha512-KZZY3s+dcijzZmV2qoDH4rYmjMZ9YKGBVoUznZKQX0e3c2GjpJm3Sldzz8HHH2Ud87JqhZPB4+4gyKZ6m98cKQ==
-  dependencies:
-    lodash "^4.17.15"
-    popper.js "^1.16.0"
-    vue-resize "^0.4.5"
-
 v8-compile-cache@^2.0.3:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/v8-compile-cache/-/v8-compile-cache-2.1.1.tgz#54bc3cdd43317bca91e35dcaf305b1a7237de745"
@@ -9035,11 +9016,6 @@ vue-loader@^15.8.3:
     loader-utils "^1.1.0"
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
-
-vue-resize@^0.4.5:
-  version "0.4.5"
-  resolved "https://registry.yarnpkg.com/vue-resize/-/vue-resize-0.4.5.tgz#4777a23042e3c05620d9cbda01c0b3cc5e32dcea"
-  integrity sha512-bhP7MlgJQ8TIkZJXAfDf78uJO+mEI3CaLABLjv0WNzr4CcGRGPIAItyWYnP6LsPA4Oq0WE+suidNs6dgpO4RHg==
 
 vue-style-loader@^4.1.0, vue-style-loader@^4.1.2:
   version "4.1.2"

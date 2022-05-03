@@ -17,21 +17,16 @@
       :message-list="messageList"
       :on-user-input-submit="onMessageWasSent"
       :participants="participants"
-      :title="chatWindowTitle"
+      title="标题111"
       :is-open="isOpen"
       :show-emoji="showEmoji"
       :show-file="showFile"
       :show-header="showHeader"
       :placeholder="placeholder"
-      :show-typing-indicator="showTypingIndicator"
       :colors="colors"
       :always-scroll-to-bottom="alwaysScrollToBottom"
-      :message-styling="messageStyling"
       @close="close"
       @scrollToTop="$emit('scrollToTop')"
-      @onType="$emit('onType')"
-      @edit="$emit('edit', $event)"
-      @remove="$emit('remove', $event)"
     >
       <template v-slot:header>
         <slot name="header"> </slot>
@@ -52,16 +47,11 @@
       <template v-slot:system-message-body="scopedProps">
         <slot name="system-message-body" :message="scopedProps.message"> </slot>
       </template>
-      <template v-slot:text-message-toolbox="scopedProps">
-        <slot name="text-message-toolbox" :message="scopedProps.message" :me="scopedProps.me">
-        </slot>
-      </template>
     </ChatWindow>
   </div>
 </template>
 
 <script>
-import store from './store/'
 import ChatWindow from './ChatWindow.vue'
 
 import CloseIcon from './assets/close-icon.png'
@@ -88,14 +78,6 @@ export default {
       }
     },
     showEmoji: {
-      type: Boolean,
-      default: false
-    },
-    showEdition: {
-      type: Boolean,
-      default: false
-    },
-    showDeletion: {
       type: Boolean,
       default: false
     },
@@ -135,10 +117,6 @@ export default {
       type: String,
       default: () => ''
     },
-    titleImageUrl: {
-      type: String,
-      default: () => ''
-    },
     onMessageWasSent: {
       type: Function,
       required: true
@@ -154,10 +132,6 @@ export default {
     placeholder: {
       type: String,
       default: 'Write a message...'
-    },
-    showTypingIndicator: {
-      type: String,
-      default: () => ''
     },
     colors: {
       type: Object,
@@ -209,34 +183,9 @@ export default {
       type: Boolean,
       default: () => false
     },
-    messageStyling: {
-      type: Boolean,
-      default: () => false
-    },
     disableUserListToggle: {
       type: Boolean,
       default: false
-    }
-  },
-  computed: {
-    chatWindowTitle() {
-      if (this.title !== '') return this.title
-
-      if (this.participants.length === 0) return 'You'
-      if (this.participants.length > 1) return 'You, ' + this.participants[0].name + ' & others'
-
-      return 'You & ' + this.participants[0].name
-    }
-  },
-  watch: {
-    $props: {
-      deep: true,
-      immediate: true,
-      handler(props) {
-        for (const prop in props) {
-          store.setState(prop, props[prop])
-        }
-      }
     }
   },
   methods: {

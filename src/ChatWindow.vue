@@ -16,12 +16,9 @@
       v-if="!showUserList"
       :messages="messages"
       :participants="participants"
-      :show-typing-indicator="showTypingIndicator"
       :colors="colors"
       :always-scroll-to-bottom="alwaysScrollToBottom"
-      :message-styling="messageStyling"
       @scrollToTop="$emit('scrollToTop')"
-      @remove="$emit('remove', $event)"
     >
       <template v-slot:user-avatar="scopedProps">
         <slot name="user-avatar" :user="scopedProps.user" :message="scopedProps.message"> </slot>
@@ -39,10 +36,6 @@
       <template v-slot:system-message-body="scopedProps">
         <slot name="system-message-body" :message="scopedProps.message"> </slot>
       </template>
-      <template v-slot:text-message-toolbox="scopedProps">
-        <slot name="text-message-toolbox" :message="scopedProps.message" :me="scopedProps.me">
-        </slot>
-      </template>
     </MessageList>
     <UserInput
       v-if="!showUserList"
@@ -53,7 +46,6 @@
       :placeholder="placeholder"
       :colors="colors"
       @onType="$emit('onType')"
-      @edit="$emit('edit', $event)"
     />
   </div>
 </template>
@@ -108,19 +100,11 @@ export default {
       type: String,
       required: true
     },
-    showTypingIndicator: {
-      type: String,
-      required: true
-    },
     colors: {
       type: Object,
       required: true
     },
     alwaysScrollToBottom: {
-      type: Boolean,
-      required: true
-    },
-    messageStyling: {
       type: Boolean,
       required: true
     }
