@@ -174,10 +174,8 @@ export default {
         this._submitTextWhenFile(event, text, file)
       } else {
         if (text && text.length > 0) {
-          console.log('haha')
           this._checkSubmitSuccess(
             this.onSubmit({
-              user_id: 1,
               type: 'text',
               pack: {content: text}
             })
@@ -186,30 +184,20 @@ export default {
       }
     },
     _submitTextWhenFile(event, text, file) {
-      if (text && text.length > 0) {
-        this._checkSubmitSuccess(
-          this.onSubmit({
-            author: 'me',
-            type: 'file',
-            data: {text, file}
-          })
-        )
-      } else {
-        this._checkSubmitSuccess(
-          this.onSubmit({
-            author: 'me',
-            type: 'file',
-            data: {file}
-          })
-        )
-      }
+      let arg = {file}
+      if (text && text.length > 0) arg = {file, text}
+
+      this._checkSubmitSuccess(
+        this.onSubmit({
+          type: 'file',
+          data: arg
+        })
+      )
     },
     _handleEmojiPicked(emoji) {
       this.$refs.userInput.innerHTML += emoji
     },
     _handleFileSubmit(file) {
-      console.log('file')
-      console.log(file)
       this.file = file
     }
   }

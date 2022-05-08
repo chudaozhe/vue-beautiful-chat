@@ -18,6 +18,7 @@
       :participants="participants"
       :colors="colors"
       :always-scroll-to-bottom="alwaysScrollToBottom"
+      :current-user-id="currentUserId"
       @scrollToTop="$emit('scrollToTop')"
     >
       <template v-slot:user-avatar="scopedProps">
@@ -29,7 +30,6 @@
           :message="scopedProps.message"
           :messageText="scopedProps.messageText"
           :messageColors="scopedProps.messageColors"
-          :me="scopedProps.me"
         >
         </slot>
       </template>
@@ -107,6 +107,10 @@ export default {
     alwaysScrollToBottom: {
       type: Boolean,
       required: true
+    },
+    currentUserId: {
+      type: Number,
+      required: true
     }
   },
   data() {
@@ -116,9 +120,7 @@ export default {
   },
   computed: {
     messages() {
-      let messages = this.messageList
-
-      return messages
+      return this.messageList
     }
   },
   methods: {

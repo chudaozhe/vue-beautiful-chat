@@ -1,6 +1,6 @@
 <template>
   <div class="sc-message--text" :style="messageColors">
-    <slot :message="message" :messageText="messageText" :messageColors="messageColors" :me="me">
+    <slot :message="message" :messageText="messageText" :messageColors="messageColors">
       <p class="sc-message--text-content" v-html="messageText"></p>
     </slot>
   </div>
@@ -29,9 +29,6 @@ export default {
         className: 'chatLink',
         truncate: {length: 50, location: 'smart'}
       })
-    },
-    me() {
-      return this.message.user_id === 1
     }
   }
 }

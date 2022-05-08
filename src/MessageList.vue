@@ -11,6 +11,7 @@
       :message="message"
       :user="profile(message.user_id)"
       :colors="colors"
+      :current-user-id="currentUserId"
     >
       <template v-slot:user-avatar="scopedProps">
         <slot name="user-avatar" :user="scopedProps.user" :message="scopedProps.message"> </slot>
@@ -21,7 +22,6 @@
           :message="scopedProps.message"
           :messageText="scopedProps.messageText"
           :messageColors="scopedProps.messageColors"
-          :me="scopedProps.me"
         >
         </slot>
       </template>
@@ -56,6 +56,10 @@ export default {
     alwaysScrollToBottom: {
       type: Boolean,
       required: true
+    },
+    currentUserId: {
+      type: Number,
+      required: true
     }
   },
   computed: {
@@ -86,7 +90,7 @@ export default {
     profile(user_id) {
       const profile = this.participants.find((profile) => profile.id === user_id)
       // A profile may not be found for system messages or messages by 'me'
-      return profile || {imageUrl: '', name: ''}
+      return profile || {avatar: '', nickname: ''}
     }
   }
 }

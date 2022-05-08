@@ -1,16 +1,12 @@
 <template>
   <div class="sc-message--file" :style="messageColors">
     <div class="sc-message--file-icon">
-      <img :src="data.file.url" class="sc-image" />
+      <a :href="pack.src ? pack.src : '#'" target="_blank"
+        ><img :src="pack.src" class="sc-image"
+      /></a>
     </div>
-    <div class="sc-message--file-name" :style="messageColors">
-      <a :href="data.file.url ? data.file.url : '#'" target="_blank">{{ data.file.name || '' }}</a>
-    </div>
-    <div class="sc-message--file-text" :style="messageColors">
-      {{ data.text }}
-      <p v-if="data.meta" class="sc-message--meta" :style="messageColors">
-        {{ data.meta }}
-      </p>
+    <div v-if="pack.content" class="sc-message--file-text" :style="messageColors">
+      {{ pack.content }}
     </div>
   </div>
 </template>
@@ -18,7 +14,7 @@
 <script>
 export default {
   props: {
-    data: {
+    pack: {
       type: Object,
       required: true
     },
@@ -49,8 +45,7 @@ export default {
 }
 
 .sc-image {
-  max-width: 100%;
-  min-width: 100%;
+  max-width: 200px;
 }
 
 .sc-message--file-text {
@@ -61,15 +56,6 @@ export default {
   line-height: 1.4;
   white-space: pre-wrap;
   -webkit-font-smoothing: subpixel-antialiased;
-}
-
-.sc-message--file-name {
-  color: white;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-top: 0;
-  font-size: x-small;
-  text-align: center;
 }
 
 .sc-message--file-name a {
@@ -91,10 +77,6 @@ export default {
   color: #263238;
   background-color: #f4f7f9;
   margin-right: 40px;
-}
-
-.sc-message--content.received .sc-message--file-name {
-  color: #000;
 }
 
 .sc-message--content.received .sc-message--file a {

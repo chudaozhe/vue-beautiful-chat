@@ -17,7 +17,7 @@
       :message-list="messageList"
       :on-user-input-submit="onMessageWasSent"
       :participants="participants"
-      title="标题111"
+      :title="title"
       :is-open="isOpen"
       :show-emoji="showEmoji"
       :show-file="showFile"
@@ -25,8 +25,10 @@
       :placeholder="placeholder"
       :colors="colors"
       :always-scroll-to-bottom="alwaysScrollToBottom"
+      :current-user-id="currentUserId"
       @close="close"
       @scrollToTop="$emit('scrollToTop')"
+      @onType="$emit('onType')"
     >
       <template v-slot:header>
         <slot name="header"> </slot>
@@ -40,7 +42,6 @@
           :message="scopedProps.message"
           :messageText="scopedProps.messageText"
           :messageColors="scopedProps.messageColors"
-          :me="scopedProps.me"
         >
         </slot>
       </template>
@@ -186,6 +187,10 @@ export default {
     disableUserListToggle: {
       type: Boolean,
       default: false
+    },
+    currentUserId: {
+      type: Number,
+      required: true
     }
   },
   methods: {

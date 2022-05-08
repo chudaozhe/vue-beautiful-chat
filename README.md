@@ -28,7 +28,24 @@
 
 原来的消息类型不符合预期，先精简只保留文本消息，后面再加入常见的消息类型
 
+- 2.5.0及以后版本是我的修改
 
+- 注意`demo/src/App.vue`
+```
+  data() {
+    return {
+      user_id: 1,
+      room_id: 1,
+      title: '标题111'
+...
+```
+`user_id`是当前用户，`title`是标题，`room_id`是聊天室id（整合后端时会用到）
+- 运行demo
+```
+cd demo
+yarn install # this installs the demo dependencies
+yarn serve # this starts the dev server at http://localhost:8080
+```
 ==================================================================
 
 # vue-beautiful-chat

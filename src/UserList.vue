@@ -4,10 +4,10 @@
       <tbody>
         <tr v-for="user in participants" :key="user.id">
           <td style="text-align: center;">
-            <img :src="user.imageUrl" class="img-msg" />
+            <img :src="user.avatar" class="img-msg" />
           </td>
           <td class="user-element" :style="{color: userListColor.userList.text}">
-            {{ user.name }}
+            {{ user.nickname }}
           </td>
         </tr>
       </tbody>

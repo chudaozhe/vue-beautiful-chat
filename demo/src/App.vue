@@ -14,6 +14,9 @@
       :show-launcher="true"
       :show-emoji="true"
       :show-file="true"
+      :title="title"
+      :current-user-id="user_id"
+      @onType="handleOnType"
       @scrollToTop="handleScrollToTop"
     >
       <template v-slot:text-message-body="scopedProps">
@@ -54,7 +57,6 @@
         >Dark</a
       >
     </p>
-    <v-dialog />
     <TestArea :chosen-color="chosenColor" :colors="colors" :on-message="sendMessage" />
   </div>
 </template>
@@ -72,6 +74,9 @@ export default {
   },
   data() {
     return {
+      user_id: 1,
+      room_id: 1,
+      title: '标题111',
       participants: chatParticipants,
       messageList: messageHistory,
       newMessagesCount: 0,
@@ -98,6 +103,9 @@ export default {
     this.messageList.forEach((x) => (x.liked = false))
   },
   methods: {
+    handleOnType() {
+      console.log('Emit typing event')
+    },
     sendMessage(text) {
       if (text.length > 0) {
         this.newMessagesCount = this.isChatOpen ? this.newMessagesCount : this.newMessagesCount + 1
@@ -110,8 +118,10 @@ export default {
       }
     },
     onMessageWasSent(message) {
-      // this.messageList = [...this.messageList, Object.assign({}, message, {id: Math.random()})]
-      this.messageList = [...this.messageList, message]
+      this.messageList = [
+        ...this.messageList,
+        Object.assign({}, message, {id: Math.random(), user_id: this.user_id})
+      ]
     },
     openChat() {
       this.isChatOpen = true

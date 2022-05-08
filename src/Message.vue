@@ -3,14 +3,12 @@
     <div
       class="sc-message--content"
       :class="{
-        sent: message.user_id === 1,
-        received: message.user_id !== 1 && message.type !== 'system',
-        system: message.type === 'system'
+        sent: message.user_id === currentUserId
       }"
     >
       <slot name="user-avatar" :message="message" :user="user">
         <div
-          v-if="message.user_id !== 1"
+          v-if="message.user_id !== currentUserId"
           :title="authorName"
           class="sc-message--avatar"
           :style="{
@@ -30,14 +28,13 @@
             :message="scopedProps.message"
             :messageText="scopedProps.messageText"
             :messageColors="scopedProps.messageColors"
-            :me="scopedProps.me"
           >
           </slot>
         </template>
       </TextMessage>
       <FileMessage
         v-else-if="message.type === 'file'"
-        :data="message.data"
+        :pack="message.pack"
         :message-colors="messageColors"
       />
     </div>
@@ -66,19 +63,23 @@ export default {
     user: {
       type: Object,
       required: true
+    },
+    currentUserId: {
+      type: Number,
+      required: true
     }
   },
   computed: {
     authorName() {
-      console.log('this.user')
-      console.log(this.user)
-      return this.user && this.user.name
+      return this.user && this.user.nickname
     },
     chatImageUrl() {
-      return (this.user && this.user.imageUrl) || chatIcon
+      return (this.user && this.user.avatar) || chatIcon
     },
     messageColors() {
-      return this.message.user_id === 1 ? this.sentColorsStyle : this.receivedColorsStyle
+      return this.message.user_id === this.currentUserId
+        ? this.sentColorsStyle
+        : this.receivedColorsStyle
     },
     receivedColorsStyle() {
       return {
@@ -102,12 +103,6 @@ export default {
 .sc-message {
   margin-bottom: 10px;
   display: flex;
-  .sc-message--edited {
-    opacity: 0.7;
-    word-wrap: normal;
-    font-size: xx-small;
-    text-align: center;
-  }
 }
 
 .sc-message--content {
@@ -117,10 +112,6 @@ export default {
 
 .sc-message--content.sent {
   justify-content: flex-end;
-}
-
-.sc-message--content.system {
-  justify-content: center;
 }
 
 .sc-message--content.sent .sc-message--avatar {
@@ -143,11 +134,5 @@ export default {
   margin-bottom: 0px;
   color: white;
   text-align: center;
-}
-
-@media (max-width: 450px) {
-  .sc-message {
-    width: 80%;
-  }
 }
 </style>
