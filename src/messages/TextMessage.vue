@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import escapeGoat from 'escape-goat'
+import {htmlEscape} from 'escape-goat'
 import Autolinker from 'autolinker'
 
 export default {
@@ -23,7 +23,7 @@ export default {
   },
   computed: {
     messageText() {
-      const escaped = escapeGoat.escape(this.message.pack.content)
+      const escaped = htmlEscape(this.message.pack.content)
 
       return Autolinker.link(escaped, {
         className: 'chatLink',

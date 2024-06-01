@@ -1,11 +1,9 @@
-import Vue from 'vue'
+
+import { createApp } from 'vue'
 import App from './App.vue'
-import Chat from '../../dist/vue-beautiful-chat.umd.min.js'
+import '../../dist/style.css'
+import Chat from '../../dist/vue-beautiful-chat.es.js'
+const app = createApp(App)
 
-Vue.use(Chat)
-
-// eslint-disable-next-line
-new Vue({
-  el: '#app',
-  render: (h) => h(App)
-})
+app.use(Chat)
+app.mount('#app')

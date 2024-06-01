@@ -1,18 +1,18 @@
 {
   "name": "demo",
-  "version": "1.0.0",
-  "license": "MIT",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "gh:publish": "NODE_ENV=production yarn run build && gh-pages -d dist"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "node-forge": "^0.10.0",
-    "vue": "^2.6.10"
+    "vue": "^3.4.21"
   },
   "devDependencies": {
-    "@vue/cli-service": "^4.4.4",
-    "gh-pages": "^1.1.0"
+    "@vitejs/plugin-vue": "^5.0.4",
+    "vite": "^5.2.8"
   }
 }

@@ -1,82 +1,14 @@
-<template>
-  <div :style="{background: backgroundColor}">
-    <beautiful-chat
-      :always-scroll-to-bottom="alwaysScrollToBottom"
-      :close="closeChat"
-      :colors="colors"
-      :is-open="isChatOpen"
-      :message-list="messageList"
-      :new-messages-count="newMessagesCount"
-      :on-message-was-sent="onMessageWasSent"
-      :open="openChat"
-      :participants="participants"
-      :show-close-button="true"
-      :show-launcher="true"
-      :show-emoji="true"
-      :show-file="true"
-      :title="title"
-      :current-user-id="user_id"
-      @onType="handleOnType"
-      @scrollToTop="handleScrollToTop"
-    >
-      <template v-slot:text-message-body="scopedProps">
-        <p class="sc-message--text-content" v-html="scopedProps.messageText"></p>
-      </template>
-    </beautiful-chat>
-    <p class="text-center toggle">
-      <a v-if="!isChatOpen" :style="{color: linkColor}" href="#" @click.prevent="openChat()"
-        >Open the chat window</a
-      >
-      <a v-else :style="{color: linkColor}" href="#" @click.prevent="closeChat()"
-        >Close the chat window</a
-      >
-    </p>
-    <p class="text-center colors">
-      <a
-        :style="{background: availableColors.blue.launcher.bg}"
-        href="#"
-        @click.prevent="setColor('blue')"
-        >Blue</a
-      >
-      <a
-        :style="{background: availableColors.red.launcher.bg}"
-        href="#"
-        @click.prevent="setColor('red')"
-        >Red</a
-      >
-      <a
-        :style="{background: availableColors.green.launcher.bg}"
-        href="#"
-        @click.prevent="setColor('green')"
-        >Green</a
-      >
-      <a
-        :style="{background: availableColors.dark.launcher.bg}"
-        href="#"
-        @click.prevent="setColor('dark')"
-        >Dark</a
-      >
-    </p>
-    <TestArea :chosen-color="chosenColor" :colors="colors" :on-message="sendMessage" />
-  </div>
-</template>
-
 <script>
 import messageHistory from './messageHistory'
 import chatParticipants from './chatProfiles'
-import TestArea from './TestArea.vue'
 import availableColors from './colors'
-
 export default {
   name: 'App',
-  components: {
-    TestArea
-  },
   data() {
     return {
       user_id: 1,
       room_id: 1,
-      title: '标题111',
+      title: '标题11',
       participants: chatParticipants,
       messageList: messageHistory,
       newMessagesCount: 0,
@@ -141,68 +73,37 @@ export default {
     }
   }
 }
+
 </script>
 
-<style>
-body {
-  padding: 0px;
-  margin: 0px;
-}
+<template>
+  <main>
+    <beautiful-chat
+      :always-scroll-to-bottom="alwaysScrollToBottom"
+      :close="closeChat"
+      :colors="colors"
+      :is-open="isChatOpen"
+      :message-list="messageList"
+      :new-messages-count="newMessagesCount"
+      :on-message-was-sent="onMessageWasSent"
+      :open="openChat"
+      :participants="participants"
+      :show-close-button="true"
+      :show-launcher="true"
+      :show-emoji="true"
+      :show-file="true"
+      :title="title"
+      :current-user-id="user_id"
+      @onType="handleOnType"
+      @scrollToTop="handleScrollToTop"
+    >
+      <template v-slot:text-message-body="scopedProps">
+        <p class="sc-message--text-content" v-html="scopedProps.messageText"></p>
+      </template>
+    </beautiful-chat>
+  </main>
+</template>
 
-* {
-  font-family: Avenir Next, Helvetica Neue, Helvetica, sans-serif;
-}
+<style scoped>
 
-.demo-description {
-  max-width: 500px;
-}
-
-.demo-description img {
-  max-width: 500px;
-}
-
-.demo-test-area {
-  width: 300px;
-  box-sizing: border-box;
-}
-
-.demo-test-area--text {
-  box-sizing: border-box;
-  width: 100%;
-  margin: 0px;
-  padding: 0px;
-  resize: none;
-  font-family: Avenir Next, Helvetica Neue, Helvetica, sans-serif;
-  background: #fafbfc;
-  color: #8da2b5;
-  border: 1px solid #dde5ed;
-  font-size: 16px;
-  padding: 16px 15px 14px;
-  margin: 0;
-  border-radius: 6px;
-  outline: none;
-  height: 150px;
-  margin-bottom: 10px;
-}
-
-.demo-monster-img {
-  width: 400px;
-  display: block;
-  margin: 60px auto;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.colors a {
-  color: #fff;
-  text-decoration: none;
-  padding: 4px 10px;
-  border-radius: 10px;
-}
-
-.toggle a {
-  text-decoration: none;
-}
 </style>

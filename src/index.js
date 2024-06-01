@@ -3,7 +3,7 @@ import Launcher from './Launcher.vue'
 const defaultComponentName = 'BeautifulChat'
 
 const Plugin = {
-  install(Vue, options = {}) {
+  install(app, options = {}) {
     /**
      * Makes sure that plugin can be installed only once
      */
@@ -12,13 +12,13 @@ const Plugin = {
     }
 
     this.installed = true
-    this.event = new Vue()
+    // this.event = new app.config.globalProperties.$eventBus // 使用全局事件总线
     this.dynamicContainer = null
     this.componentName = options.componentName || defaultComponentName
     /**
      * Plugin API
      */
-    Vue.prototype.$chat = {
+    app.config.globalProperties.$chat = {
       _setDynamicContainer(dynamicContainer) {
         Plugin.dynamicContainer = dynamicContainer
       }
@@ -26,7 +26,7 @@ const Plugin = {
     /**
      * Sets custom component name (if provided)
      */
-    Vue.component(this.componentName, Launcher)
+    app.component(this.componentName, Launcher)
   }
 }
 

@@ -124,11 +124,11 @@ export default {
     }
   },
   mounted() {
-    this.$root.$on('focusUserInput', () => {
-      if (this.$refs.userInput) {
-        this.focusUserInput()
-      }
-    })
+    // this.$root.$on('focusUserInput', () => {
+    //   if (this.$refs.userInput) {
+    //     this.focusUserInput()
+    //   }
+    // })
   },
   methods: {
     cancelFile() {

@@ -7,9 +7,9 @@
       @close="$emit('close')"
       @userList="handleUserListToggle"
     >
-      <template>
-        <slot name="header"> </slot>
-      </template>
+<!--      <template>-->
+<!--        <slot name="header"> </slot>-->
+<!--      </template>-->
     </Header>
     <UserList v-if="showUserList" :colors="colors" :participants="participants" />
     <MessageList
