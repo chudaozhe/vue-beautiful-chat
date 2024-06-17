@@ -42,6 +42,7 @@
       :show-emoji="showEmoji"
       :on-submit="onUserInputSubmit"
       :suggestions="getSuggestions()"
+      :mention-items="mentionItems"
       :show-file="showFile"
       :placeholder="placeholder"
       :colors="colors"
@@ -71,6 +72,10 @@ export default {
     showFile: {
       type: Boolean,
       default: false
+    },
+    mentionItems: {
+      type: Array,
+      default: () => []
     },
     showHeader: {
       type: Boolean,

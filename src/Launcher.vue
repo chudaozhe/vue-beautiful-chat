@@ -14,6 +14,7 @@
       <img v-else class="sc-open-icon" :src="icons.open.img" :alt="icons.open.name" />
     </div>
     <ChatWindow
+      :mention-items="mentionItems"
       :message-list="messageList"
       :on-user-input-submit="onMessageWasSent"
       :participants="participants"
@@ -93,6 +94,10 @@ export default {
     close: {
       type: Function,
       required: true
+    },
+    mentionItems: {
+      type: Array,
+      default: () => []
     },
     showFile: {
       type: Boolean,

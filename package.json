@@ -1,6 +1,6 @@
 {
   "name": "@chudaozhe/vue-beautiful-chat",
-  "version": "2.5.2",
+  "version": "2.5.3",
   "description": "A simple and beautiful Vue chat component backend agnostic.",
   "main": "./dist/vue-beautiful-chat.es.js",
   "repository": "https://github.com/chudaozhe/vue-beautiful-chat.git",
@@ -20,6 +20,8 @@
   },
   "dependencies": {
     "autolinker": "^4.0.0",
+    "floating-vue": "^5.2.2",
+    "vue-mention": "^2.0.0-alpha.3",
     "emoji-js": "^3.8.0",
     "escape-goat": "^4.0.0"
   },

@@ -17,7 +17,21 @@ export default {
       availableColors,
       chosenColor: null,
       alwaysScrollToBottom: true,
-      userIsTyping: false
+      userIsTyping: false,
+      items: [
+        {
+          value: 'kimi',
+          firstName: 'kimi2',
+        },
+        {
+          value: 'kimi2',
+          firstName: 'kimi22',
+        },
+        {
+          value: 'kimi3',
+          firstName: 'kimi23',
+        }
+      ],
     }
   },
   computed: {
@@ -82,6 +96,7 @@ export default {
       :always-scroll-to-bottom="alwaysScrollToBottom"
       :close="closeChat"
       :colors="colors"
+      :mention-items="items"
       :is-open="isChatOpen"
       :message-list="messageList"
       :new-messages-count="newMessagesCount"

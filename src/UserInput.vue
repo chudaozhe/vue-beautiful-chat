@@ -25,8 +25,15 @@
     <form
       class="sc-user-input"
       :class="{active: inputActive}"
-      :style="{background: colors.userInput.bg}"
+      :style="{background: colors.userInput.bg, 'justify-content':'space-between'}"
     >
+      <Mentionable
+        :keys="['@', '#']"
+        :items="mentionItems"
+        offset="6"
+        insert-space
+        @open="onOpen"
+      >
       <div
         ref="userInput"
         role="button"
@@ -40,6 +47,32 @@
         @keydown="handleKey"
         @focusUserInput="focusUserInput()"
       ></div>
+        <template #no-result>
+          <div class="dim">
+            No result
+          </div>
+        </template>
+
+        <template #item-@="{ item }">
+          <div class="user">
+            {{ item.value }}
+            <span class="dim">
+          ({{ item.firstName }})
+        </span>
+          </div>
+        </template>
+
+        <template #item-#="{ item }">
+          <div class="issue">
+        <span class="number">
+          #{{ item.value }}
+        </span>
+            <span class="dim">
+          {{ item.label }}
+        </span>
+          </div>
+        </template>
+      </Mentionable>
       <div class="sc-user-input--buttons">
         <div v-if="showEmoji" class="sc-user-input--button">
           <EmojiIcon :on-emoji-picked="_handleEmojiPicked" :color="colors.userInput.text" />
@@ -68,13 +101,16 @@ import UserInputButton from './UserInputButton.vue'
 import FileIcon from './assets/file.svg'
 import CloseIconSvg from './assets/close.svg'
 import IconSend from './components/icons/IconSend.vue'
+import { Mentionable } from 'vue-mention'
+import 'floating-vue/dist/style.css'
 
 export default {
   components: {
     EmojiIcon,
     FileIcons,
     UserInputButton,
-    IconSend
+    IconSend,
+    Mentionable
   },
   props: {
     icons: {
@@ -97,6 +133,10 @@ export default {
       default: () => false
     },
     suggestions: {
+      type: Array,
+      default: () => []
+    },
+    mentionItems: {
       type: Array,
       default: () => []
     },
@@ -131,6 +171,10 @@ export default {
     // })
   },
   methods: {
+    onOpen (key) {
+      // console.log('key:', key)
+      // this.items = key === '@' ? users : issues
+    },
     cancelFile() {
       this.file = null
     },
@@ -204,6 +248,20 @@ export default {
 }
 </script>
 
+<style>
+.mentionable {
+  width: 100%;
+}
+.mention-item {
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+.mention-selected {
+  background: rgb(121, 88, 209);
+  color: white;
+}
+</style>
 <style scoped>
 .sc-user-input {
   min-height: 55px;
